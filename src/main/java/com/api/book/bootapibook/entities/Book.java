@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name="books")
 public class Book {
@@ -22,6 +24,7 @@ public class Book {
     //OneToOne unidirectional mapping from Book to -> Author 
     // cascade is used to update the dependent table like author first.
     @OneToOne(cascade = CascadeType.ALL)
+    @JsonManagedReference
     private Author author;
     
     public Book(int id, String title, Author author) {
