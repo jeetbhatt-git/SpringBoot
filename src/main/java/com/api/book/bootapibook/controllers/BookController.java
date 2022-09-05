@@ -32,6 +32,12 @@ public class BookController {
     // @RequestMapping(value = "/books", method = RequestMethod.GET)   > THis is replaced by line @GetMapping
     // @ResponseBody
 
+    @RequestMapping(value="/test", method = RequestMethod.GET)
+    @ResponseBody
+    private String testController(){
+        return "Hello Controller test";
+    }
+
     
 
     @Autowired
@@ -39,7 +45,7 @@ public class BookController {
 
     @GetMapping("/books")
     public ResponseEntity<List<Book>> getBooks(){
-
+          System.out.println("Get GET  conroller test");
         List<Book> list = null;
         list = this.bookService.getAllBooks();
 
@@ -65,6 +71,7 @@ public class BookController {
         Book book = null;
         try{
          book = this.bookService.addBook(b);
+         System.out.println("post conroller test");
         return ResponseEntity.status(HttpStatus.CREATED).build();  
         }catch(Exception e){
             e.printStackTrace();
